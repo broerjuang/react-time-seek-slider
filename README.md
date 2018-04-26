@@ -1,8 +1,13 @@
 # react-time-seek-slider
 
-Youtube-like time seek slider for React. Fork of ![react-video-seek-slider](https://github.com/egorovsa/react-video-seek-slider/blob/master/example.png?raw=true)
+Youtube-like time seek slider for React. Fork of [react-video-seek-slider](https://github.com/egorovsa/react-video-seek-slider) for enhancements like:
 
-Demo [react-time-seek-slider](http://time-seeker.egorov.pw/)
+* Time units in millisecond, not second
+* More events and callbacks (not yet!)
+
+![react-video-seek-slider](https://github.com/egorovsa/react-video-seek-slider/blob/master/example.png?raw=true)
+
+Video seek slider demo [react-video-seek-slider](http://video-seeker.egorov.pw/)
 
 ## How to install
 ```
