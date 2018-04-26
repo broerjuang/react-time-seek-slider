@@ -39,7 +39,7 @@ import 'react-time-seek-slider/lib/time-seek-slider.css';
         max={1152}
         currentTime={this.state.currentTime}
         progress={400}
-        onChange={(time:number)=>{
+        onChange={(time)=>{
             this.setState({
                 currentTime:time
             });

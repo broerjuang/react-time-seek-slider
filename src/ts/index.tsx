@@ -172,16 +172,13 @@ export class TimeSeekSlider extends React.Component<Props, State> {
 	private getHoverTime(): string {
 		let percent: number = this.state.seekHoverPosition * 100 / this.state.trackWidth;
 		let time: number = +(percent * (this.props.max / 100)).toFixed(0);
+		let times: Time = this.secondsToTime(time);
 
 		if ((this.props.max + this.props.offset) < 60) {
-			return this.props.secondsPrefix + (time + this.props.offset);
+			return this.props.secondsPrefix + times.ss;
 		} else if ((this.props.max + this.props.offset) < 3600) {
-			let times: Time = this.secondsToTime(time);
-
 			return this.props.minutesPrefix + times.mm + ':' + times.ss;
 		} else {
-			let times: Time = this.secondsToTime(time);
-
 			return times.hh + ':' + times.mm + ':' + times.ss;
 		}
 	}
