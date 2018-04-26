@@ -188,6 +188,8 @@ export class TimeSeekSlider extends React.Component<Props, State> {
 	}
 
 	private setSeeking = (state: boolean, event): void => {
+		event.preventDefault();
+
 		this.seeking = state;
 		this.handleSeeking(event);
 
