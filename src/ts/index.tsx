@@ -147,6 +147,10 @@ export class TimeSeekSlider extends React.Component<Props, State> {
 
 		if (this.hoverTime) {
 			position = this.state.seekHoverPosition - this.hoverTime.offsetWidth / 2;
+			if (position < 0)
+				position = 0;
+			else if (position + this.hoverTime.offsetWidth > this.state.trackWidth)
+				position = this.state.trackWidth - this.hoverTime.offsetWidth;
 		}
 
 		return {
