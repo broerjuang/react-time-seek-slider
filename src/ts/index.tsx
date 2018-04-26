@@ -20,18 +20,14 @@ export interface Props {
 export interface State {
 	ready: boolean,
 	trackWidth: number,
-	seekHoverPosition: number,
-	seeking: boolean,
-	mobileSeeking: boolean
+	seekHoverPosition: number
 }
 
 export class TimeSeekSlider extends React.Component<Props, State> {
 	state: State = {
 		ready: false,
 		trackWidth: 0,
-		seekHoverPosition: 0,
-		seeking: false,
-		mobileSeeking: false
+		seekHoverPosition: 0
 	};
 
 	static defaultProps: Props = {
@@ -44,6 +40,8 @@ export class TimeSeekSlider extends React.Component<Props, State> {
 		minutesPrefix: ''
 	} as Props;
 
+	private seeking: boolean;
+	private mobileSeeking: boolean;
 	private track: HTMLDivElement;
 	private hoverTime: HTMLDivElement;
 
@@ -73,13 +71,13 @@ export class TimeSeekSlider extends React.Component<Props, State> {
 
 		pageX = pageX < 0 ? 0 : pageX;
 
-		if (this.state.mobileSeeking) {
+		if (this.mobileSeeking) {
 			this.changeCurrentTimePosition(pageX);
 		}
 	};
 
 	private handleSeeking = (event): void => {
-		if (this.state.seeking) {
+		if (this.seeking) {
 			this.changeCurrentTimePosition(event.pageX);
 		}
 	};
@@ -95,7 +93,7 @@ export class TimeSeekSlider extends React.Component<Props, State> {
 		} as State);
 
 		let percent: number = position * 100 / this.state.trackWidth;
-		let time: number = +(percent * (this.props.max / 100)).toFixed(0);
+		let time: number = percent * (this.props.max / 100);
 
 		this.props.onChange(time, (time + this.props.offset));
 	}
@@ -189,23 +187,23 @@ export class TimeSeekSlider extends React.Component<Props, State> {
 	}
 
 	private setSeeking = (state: boolean, event): void => {
+		this.seeking = state;
 		this.handleSeeking(event);
 
 		this.setState({
-			seeking: state,
 			seekHoverPosition: !state ? 0 : this.state.seekHoverPosition
 		} as State)
 	};
 
 	private setMobileSeeking = (state: boolean): void => {
+		this.mobileSeeking = state;
 		this.setState({
-			mobileSeeking: state,
 			seekHoverPosition: !state ? 0 : this.state.seekHoverPosition
 		} as State)
 	};
 
 	private isThumbActive(): boolean {
-		return this.state.seekHoverPosition > 0 || this.state.seeking;
+		return this.state.seekHoverPosition > 0 || this.seeking;
 	}
 
 	private drawHoverTime(): JSX.Element {
