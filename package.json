@@ -1,13 +1,13 @@
 {
-	"name": "react-video-seek-slider",
-	"description": "React video seek slider like youtube",
-	"version": "2.0.0",
+	"name": "react-time-seek-slider",
+	"description": "Time seek slider for React",
+	"version": "1.0.0",
 	"main": "./lib/index.js",
-	"author": "Sergey Egorov",
+	"author": "Dylan Yi",
 	"license": "MIT",
 	"scripts": {
 		"dev": "webpack-dev-server",
-		"stylus": "stylus --compress < ./src/styl/ui-video-seek-slider.styl > ./lib/ui-video-seek-slider.css",
+		"stylus": "stylus --compress < ./src/styl/ui-time-seek-slider.styl > ./lib/ui-time-seek-slider.css",
 		"production": "rm -rf ./lib && tsc ./src/ts/index.tsx -d --jsx react --target ES5 --outDir ./lib && npm run stylus && cp ./lib/index.d.ts ./index.d.ts"
 	},
 	"devDependencies": {
@@ -26,7 +26,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/egorovsa/react-video-seek-slider.git"
+		"url": "https://github.com/feeva/react-time-seek-slider.git"
 	},
 	"dependencies": {
 		"react": "^16.3.2",

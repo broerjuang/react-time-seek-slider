@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {VideoSeekSlider} from "./index";
+import {TimeSeekSlider} from "./index";
 
 export interface State {
 	currentTime: number
@@ -14,7 +14,7 @@ export class AppComponent extends React.Component<any, State> {
 		return (
 			<div className="container">
 				<h1>React Video slider</h1>
-				<VideoSeekSlider
+				<TimeSeekSlider
 					max={1152}
 					currentTime={this.state.currentTime}
 					progress={400}

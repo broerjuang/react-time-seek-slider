@@ -1,45 +1,43 @@
-# react-video-seek-slider
+# react-time-seek-slider
 
-React video seeker slider for video player like youtube
+Youtube-like time seek slider for React. Fork of ![react-video-seek-slider](https://github.com/egorovsa/react-video-seek-slider/blob/master/example.png?raw=true)
 
-Demo [react-video-seek-slider](http://video-seeker.egorov.pw/)
-
-![react-video-seek-slider](https://github.com/egorovsa/react-video-seek-slider/blob/master/example.png?raw=true)
+Demo [react-time-seek-slider](http://time-seeker.egorov.pw/)
 
 ## How to install
 ```
-npm i react-video-seek-slider --save
+npm i react-time-seek-slider
 ```
 
 ## How to import
 For TypeScript usage there is a index.d.ts in node_modules folder
 ```typescript
-import {VideoSeekSlider} from 'react-video-seek-slider';
+import {TimeSeekSlider} from 'react-time-seek-slider';
 ```
 
 or
 
 ```javascript
-const VideoSeekSlider = require('react-video-seek-slider');
+const TimeSeekSlider = require('react-time-seek-slider');
 ```
 
 Also you have to use css file in a lib folder in: 
 
-```
-node_modules/react-video-seek-slider/lib/video-seek-slider.css
+```javascript
+import 'react-time-seek-slider/lib/time-seek-slider.css';
 ```
 
 ## How to use
 ```jsx harmony
 //JSX
-    <VideoSeekSlider
+    <TimeSeekSlider
         max={1152}
         currentTime={this.state.currentTime}
         progress={400}
         onChange={(time:number)=>{
             this.setState({
                 currentTime:time
-            } as State);
+            });
         }}
         offset={0}
         secondsPrefix="00:00:"
@@ -55,8 +53,8 @@ node_modules/react-video-seek-slider/lib/video-seek-slider.css
 + `hideSeekTimes` (boolean) - hide hover current time (Default: false)
 + `onChange` ((time:number, offsetTime:number)=>void, required) - script to be run when thumb change position
 + `offset` (number, default:0) - when you need start slider with offset time
-+ `secondsPrefix` (string, default: '') - when video time is less than one minutes you can use prefix time as "00:00:"
-+ `minutesPrefix` (string, default: '')  - when video time is less than one hour you can use prefix time as "00:"
++ `secondsPrefix` (string, default: '') - when time is less than one minutes you can use prefix time as "00:00:"
++ `minutesPrefix` (string, default: '')  - when time is less than one hour you can use prefix time as "00:"
 
 ## For development
 just use:

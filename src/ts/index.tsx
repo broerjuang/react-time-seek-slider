@@ -25,7 +25,7 @@ export interface State {
 	mobileSeeking: boolean
 }
 
-export class VideoSeekSlider extends React.Component<Props, State> {
+export class TimeSeekSlider extends React.Component<Props, State> {
 	state: State = {
 		ready: false,
 		trackWidth: 0,
@@ -225,7 +225,7 @@ export class VideoSeekSlider extends React.Component<Props, State> {
 	public render() {
 		return (
 			<div
-				className="ui-video-seek-slider"
+				className="ui-time-seek-slider"
 			>
 				<div
 					className={this.isThumbActive() ? "track active" : "track"}
