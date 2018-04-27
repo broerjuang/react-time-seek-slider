@@ -2,8 +2,12 @@
 
 Youtube-like time seek slider for React. Fork of [react-video-seek-slider](https://github.com/egorovsa/react-video-seek-slider) for enhancements like:
 
-* Time units in millisecond, not second
-* More events and callbacks (not yet!)
+* onChange callback gets time in millisecond, not second
+* Seek event fires immediately on mousedown and touchstart
+* Thumb dragging does not cause text selection
+* Max time smaller than 60 shows current time tooltip correctly
+* Time tooltip stays inside left and right boundary of the seek track
+* More events (not yet!)
 
 ![react-video-seek-slider](https://github.com/egorovsa/react-video-seek-slider/blob/master/example.png?raw=true)
 
