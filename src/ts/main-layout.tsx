@@ -13,12 +13,12 @@ export class AppComponent extends React.Component<any, State> {
 	public render() {
 		return (
 			<div className="container">
-				<h1>React Video slider</h1>
+				<h1>React Time Seek Slider</h1>
 				<TimeSeekSlider
 					max={1152}
 					currentTime={this.state.currentTime}
 					progress={400}
-					onChange={(time: number, offsetTime: number) => {
+					onSeeking={(time: number, offsetTime: number) => {
 						this.setState({
 							currentTime: time // or offsetTime
 						} as State);

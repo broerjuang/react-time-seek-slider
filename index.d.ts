@@ -4,7 +4,8 @@ export interface Props {
     max: number;
     currentTime: number;
     progress?: number;
-    onChange: (time: number, offsetTime: number) => void;
+    onSeeking: (time: number, offsetTime: number) => void;
+    onSeekend?: () => void;
     hideHoverTime?: boolean;
     offset?: number;
     secondsPrefix?: string;
@@ -25,7 +26,9 @@ export declare class TimeSeekSlider extends React.Component<Props, State> {
     componentDidMount(): void;
     componentWillUnmount(): void;
     private handleTouchSeeking;
+    private endTouchSeeking;
     private handleSeeking;
+    private endSeeking;
     private changeCurrentTimePosition(pageX);
     private setTrackWidthState;
     private handleTrackHover;

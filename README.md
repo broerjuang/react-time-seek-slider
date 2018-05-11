@@ -2,12 +2,12 @@
 
 Youtube-like time seek slider for React. Fork of [react-video-seek-slider](https://github.com/egorovsa/react-video-seek-slider) for enhancements like:
 
-* onChange callback gets time in millisecond, not second
+* onSeeking callback gets time with millisecond precision
 * Seek event fires immediately on mousedown and touchstart
 * Thumb dragging does not cause text selection
-* Max time smaller than 60 shows current time tooltip correctly
+* Time tooltip shows correct time text for time smaller than 60
 * Time tooltip stays inside left and right boundary of the seek track
-* More events (not yet!)
+* Events: onSeeking, onSeekend
 
 ![react-video-seek-slider](https://github.com/egorovsa/react-video-seek-slider/blob/master/example.png?raw=true)
 
@@ -43,7 +43,7 @@ import 'react-time-seek-slider/lib/time-seek-slider.css';
         max={1152}
         currentTime={this.state.currentTime}
         progress={400}
-        onChange={(time)=>{
+        onSeeking={(time)=>{
             this.setState({
                 currentTime:time
             });
@@ -60,7 +60,8 @@ import 'react-time-seek-slider/lib/time-seek-slider.css';
 + `currentTime` (number, required) - Current sliders value
 + `progress` (number) - Current buffered progress
 + `hideSeekTimes` (boolean) - hide hover current time (Default: false)
-+ `onChange` ((time:number, offsetTime:number)=>void, required) - script to be run when thumb change position
++ `onSeeking` ((time:number, offsetTime:number)=>void, required) - script to be run when thumb changes position
++ `onSeekend` (()=>void, default: null) - script to be run when thumb change ends
 + `offset` (number, default:0) - when you need start slider with offset time
 + `secondsPrefix` (string, default: '') - when time is less than one minutes you can use prefix time as "00:00:"
 + `minutesPrefix` (string, default: '')  - when time is less than one hour you can use prefix time as "00:"

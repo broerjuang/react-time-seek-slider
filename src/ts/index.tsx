@@ -10,7 +10,8 @@ export interface Props {
 	max: number,
 	currentTime: number,
 	progress?: number,
-	onChange: (time: number, offsetTime: number) => void,
+	onSeeking: (time: number, offsetTime: number) => void,
+	onSeekend?: () => void,
 	hideHoverTime?: boolean,
 	offset?: number,
 	secondsPrefix?: string,
@@ -49,17 +50,17 @@ export class TimeSeekSlider extends React.Component<Props, State> {
 		this.setTrackWidthState();
 		window.addEventListener('resize', this.setTrackWidthState);
 		window.addEventListener('mousemove', this.handleSeeking);
-		window.addEventListener('mouseup', (e) => this.setSeeking(false, e));
+		window.addEventListener('mouseup', this.endSeeking);
 		window.addEventListener('touchmove', this.handleTouchSeeking);
-		window.addEventListener('touchend', (e) => this.setMobileSeeking(false));
+		window.addEventListener('touchend', this.endTouchSeeking);
 	}
 
 	componentWillUnmount() {
 		window.removeEventListener('resize', this.setTrackWidthState);
 		window.removeEventListener('mousemove', this.handleSeeking);
-		window.removeEventListener('mouseup', (e) => this.setSeeking(false, e));
+		window.removeEventListener('mouseup', this.endSeeking);
 		window.removeEventListener('touchmove', this.handleTouchSeeking);
-		window.removeEventListener('touchend', (e) => this.setMobileSeeking(false));
+		window.removeEventListener('touchend', this.endTouchSeeking);
 	}
 
 	private handleTouchSeeking = (event): void => {
@@ -76,11 +77,23 @@ export class TimeSeekSlider extends React.Component<Props, State> {
 		}
 	};
 
+	private endTouchSeeking = (event): void => {
+		this.setMobileSeeking(false);
+		if (this.props.onSeekend)
+			this.props.onSeekend();
+	}
+
 	private handleSeeking = (event): void => {
 		if (this.seeking) {
 			this.changeCurrentTimePosition(event.pageX);
 		}
 	};
+
+	private endSeeking = (event): void => {
+		this.setSeeking(false, event);
+		if (this.props.onSeekend)
+			this.props.onSeekend();
+	}
 
 	private changeCurrentTimePosition(pageX: number): void {
 		let position: number = pageX - this.track.getBoundingClientRect().left;
@@ -95,7 +108,7 @@ export class TimeSeekSlider extends React.Component<Props, State> {
 		let percent: number = position * 100 / this.state.trackWidth;
 		let time: number = percent * (this.props.max / 100);
 
-		this.props.onChange(time, (time + this.props.offset));
+		this.props.onSeeking(time, (time + this.props.offset));
 	}
 
 	private setTrackWidthState = (): void => {
